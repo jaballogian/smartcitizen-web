@@ -10,11 +10,12 @@ cookiesLaw.$inject = ['$cookies'];
 function cookiesLaw($cookies) {
   return {
     template:
-      '<div class="cookies-policy_container" ng-hide="isCookieValidBool">' +
-      'This site uses cookies to offer you a better experience.  ' +
-      ' <a href="" ng-click="acceptCookie(true)">Accept</a> or' +
-      ' <a ui-sref="layout.policy">Learn More.</a> ' +
-      '</div>',
+      // '<div class="cookies-policy_container" ng-hide="isCookieValidBool">' +
+      // 'This site uses cookies to offer you a better experience.  ' +
+      // ' <a href="" ng-click="acceptCookie(true)">Accept</a> or' +
+      // ' <a ui-sref="layout.policy">Learn More.</a> ' +
+      // '</div>'
+      '<div></div>',
     controller: function($scope) {
 
       var init = function(){
