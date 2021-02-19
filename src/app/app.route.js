@@ -38,9 +38,37 @@
         */
         .state('landing', {
           url: '/',
-          templateUrl: 'app/components/landing/landing.html',
-          controller: 'LandingController',
-          controllerAs: 'vm'
+          // templateUrl: 'app/components/landing/landing.html',
+          // controller: 'LandingController',
+          // controllerAs: 'vm'
+          abstract: true,
+          views: {
+            '': {
+              templateUrl: 'app/components/home/template.html'
+            },
+
+            'map@layout.home': {
+              templateUrl: 'app/components/map/map.html',
+              controller: 'MapController',
+              controllerAs: 'vm'
+            }
+          },
+          resolve: {
+            sensorTypes: function(sensor) {
+              return sensor.callAPI()
+                .then(function(sensorTypes) {
+                  return sensorTypes.plain();
+                });
+            },
+            selectedTags: function($stateParams, tag){
+              if(typeof($stateParams.tags) === 'string'){
+                tag.setSelectedTags([$stateParams.tags]);
+              }else{
+                // We have an array
+                tag.setSelectedTags(_.uniq($stateParams.tags));
+              }
+            }
+          }
         })
         /*
         -- Layout state --
